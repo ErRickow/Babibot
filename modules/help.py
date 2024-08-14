@@ -48,7 +48,7 @@ async def help_cmd(_, message: Message):
                 if msg_edited:
                     await message.reply(text, disable_web_page_preview=True)
                 else:
-                    await message.edit(text, disable_web_page_preview=True)
+                    await message.reply(text, disable_web_page_preview=True)
                     msg_edited = True
                 text = "<b>"
 
@@ -57,9 +57,9 @@ async def help_cmd(_, message: Message):
         if msg_edited:
             await message.reply(text, disable_web_page_preview=True)
         else:
-            await message.edit(text, disable_web_page_preview=True)
+            await message.reply(text, disable_web_page_preview=True)
     elif message.command[1].lower() in modules_help:
-        await message.edit(format_module_help(message.command[1].lower()))
+        await message.reply(format_module_help(message.command[1].lower()))
     else:
         # No, this cringe won't be refactored
         command_name = message.command[1].lower()
