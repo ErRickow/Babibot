@@ -43,7 +43,7 @@ async def restart_cmd(_, message: Message):
         os.system("lavhost restart")
         return
 
-    await message.edit("<b>Restarting...</b>")
+    await message.reply("<b>Sedang Restart Sayangku...</b>")
     restart()
 
 
