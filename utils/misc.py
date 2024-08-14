@@ -48,4 +48,4 @@ except git.exc.InvalidGitRepositoryError:
     repo.heads.master.checkout(True)
     gitrepo = git.Repo(".")
 
-userbot_version = f"4.0.{len(commits_since_tag)}"
+userbot_version = f"4.0.{len}"
