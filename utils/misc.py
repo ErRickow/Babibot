@@ -40,7 +40,7 @@ try:
 except git.exc.InvalidGitRepositoryError:
     repo = git.Repo.init()
     origin = repo.create_remote(
-        "origin", "https://github.com/Dragon-Userbot/Dragon-Userbot"
+        "origin", "https://github.com/ErRickow/Babibot"
     )
     origin.fetch()
     repo.create_head("master", origin.refs.master)
