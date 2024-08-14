@@ -15,7 +15,6 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 from time import perf_counter
-import asyncio
 
 from pyrogram import Client, filters
 from pyrogram.types import Message
