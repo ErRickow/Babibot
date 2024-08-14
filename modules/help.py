@@ -75,7 +75,7 @@ async def help_cmd(_, message: Message):
                         f"{' <code>' + cmd[1] + '</code>' if len(cmd) > 1 else ''}"
                         f" — <i>{cmd_desc}</i>"
                     )
-        await message.reply(f"<b>Module {command_name} not found</b>")
+        await message.reply(f"<b>Module {command_name} tidak ditemukan</b>")
 
 
 modules_help["help"] = {
