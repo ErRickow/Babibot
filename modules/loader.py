@@ -36,7 +36,7 @@ BASE_PATH = os.path.abspath(os.getcwd())
 @Client.on_message(filters.command(["loadmod", "lm"], prefix) & filters.me)
 async def loadmod(client: Client, message: Message):
     if len(message.command) == 1:
-        await message.edit("<b>Specify module to download</b>")
+        await message.reply("<b>Specify module to download</b>")
         return
 
     module_name = message.command[1].lower()
@@ -45,7 +45,7 @@ async def loadmod(client: Client, message: Message):
         f"/custom_modules/{modules_repo_branch}/{module_name}.py"
     )
     if not resp.ok:
-        await message.edit(
+        await message.reply(
             f"<b>Module <code>{module_name}</code> is not found</b>"
         )
         return
@@ -60,9 +60,9 @@ async def loadmod(client: Client, message: Message):
         module = await load_module(module_name, client, message)
     except Exception as e:
         os.remove(f"./modules/custom_modules/{module_name}.py")
-        return await message.edit(format_exc(e))
+        return await message.reply(format_exc(e))
 
-    await message.edit(
+    await message.reply(
         f"<b>The module <code>{module_name}</code> is loaded!</b>\n\n"
         f"{format_module_help(module_name, False)}"
     )
@@ -71,7 +71,7 @@ async def loadmod(client: Client, message: Message):
 @Client.on_message(filters.command(["unloadmod", "ulm"], prefix) & filters.me)
 async def unload_mods(client: Client, message: Message):
     if len(message.command) <= 1:
-        return await message.edit("<b>Specify module to unload</b>")
+        return await message.reply("<b>Specify module to unload</b>")
 
     module_name = message.command[1].lower()
 
@@ -79,25 +79,25 @@ async def unload_mods(client: Client, message: Message):
         try:
             await unload_module(module_name, client)
         except Exception as e:
-            return await message.edit(format_exc(e))
+            return await message.reply(format_exc(e))
 
         os.remove(f"{BASE_PATH}/modules/custom_modules/{module_name}.py")
-        await message.edit(
+        await message.reply(
             f"<b>The module <code>{module_name}</code> removed!</b>"
         )
     elif os.path.exists(f"{BASE_PATH}/modules/{module_name}.py"):
-        await message.edit(
+        await message.reply(
             "<b>It is forbidden to remove built-in modules, it will disrupt the updater</b>"
         )
     else:
-        await message.edit(
+        await message.reply(
             f"<b>Module <code>{module_name}</code> is not found</b>"
         )
 
 
 @Client.on_message(filters.command(["loadallmods"], prefix) & filters.me)
 async def load_all_mods(client: Client, message: Message):
-    await message.edit("<b>Fetching info...</b>")
+    await message.reply("<b>Fetching info...</b>")
 
     if not os.path.exists(f"{BASE_PATH}/modules/custom_modules"):
         os.mkdir(f"{BASE_PATH}/modules/custom_modules")
@@ -117,9 +117,9 @@ async def load_all_mods(client: Client, message: Message):
             continue
         new_modules[module_info["name"][:-3]] = module_info["download_url"]
     if not new_modules:
-        return await message.edit("<b>All modules already loaded</b>")
+        return await message.reply("<b>All modules already loaded</b>")
 
-    await message.edit(
+    await message.reply(
         f"<b>Loading new modules (it may take a lot of time): "
         f'{" ".join(new_modules.keys())}</b>'
     )
@@ -130,14 +130,14 @@ async def load_all_mods(client: Client, message: Message):
 
         await load_module(module_name, client)
 
-    await message.edit(
+    await message.reply(
         f'<b>Successfully loaded new modules: {" ".join(new_modules.keys())}</b>'
     )
 
 
 @Client.on_message(filters.command(["updateallmods"], prefix) & filters.me)
 async def updateallmods(_, message: Message):
-    await message.edit("<b>Updating modules...</b>")
+    await message.reply("<b>Updating modules...</b>")
 
     if not os.path.exists(f"{BASE_PATH}/modules/custom_modules"):
         os.mkdir(f"{BASE_PATH}/modules/custom_modules")
@@ -145,7 +145,7 @@ async def updateallmods(_, message: Message):
     modules_installed = list(os.walk("modules/custom_modules"))[0][2]
 
     if not modules_installed:
-        return await message.edit("<b>You don't have any modules installed</b>")
+        return await message.reply("<b>You don't have any modules installed</b>")
 
     for module_name in modules_installed:
         if not module_name.endswith(".py"):
@@ -165,7 +165,7 @@ async def updateallmods(_, message: Message):
         # Unloading and loading modules manually will take a lot of time
         # Restart will do this work faster
 
-    await message.edit(
+    await message.reply(
         f"<b>Successfully updated {len(modules_installed)} modules</b>"
     )
 
