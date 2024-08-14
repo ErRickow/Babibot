@@ -68,7 +68,7 @@ async def help_cmd(_, message: Message):
                 if command.split()[0] == command_name:
                     cmd = command.split(maxsplit=1)
                     cmd_desc = commands[command]
-                    return await message.edit(
+                    return await message.reply(
                         f"<b>Help for command <code>{prefix}{command_name}</code>\n"
                         f"Module: {name} (<code>{prefix}help {name}</code>)</b>\n\n"
                         f"<code>{prefix}{cmd[0]}</code>"
