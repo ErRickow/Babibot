@@ -32,7 +32,7 @@ def get_readable_time(seconds: int) -> str:
     return readable_time
 
 @Client.on_message(filters.command(["tes", "t"], prefix) & filters.me)
-async def tes(_, message: Message):
+async def get_readable_time(_, message: Message):
 uptime = get_readable_time((time.time() - time.time()))
 start = dt.now()
 end = dt.now()
