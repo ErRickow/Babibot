@@ -25,6 +25,7 @@ from utils.misc import modules_help, prefix
 @Client.on_message(filters.command(["ping", "p"], prefix) & filters.me)
 async def ping(_, message: Message):
     start = perf_counter()
+    await message.reply("anu!")
     end = perf_counter()
     await message.reply(f"<b>Pong! {round(end - start, 1)}s</b>")
 
