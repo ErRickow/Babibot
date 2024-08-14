@@ -41,3 +41,7 @@ duration = (end - start).microseconds / 1000
 await message.reply_text(
         f" **Pong !!** " f"`%sms` \n" f" **Uptime** - " f"`{uptime}` " % (duration)
     )
+    
+    modules_help["tes"] = {
+    "tes": "Check ping to Telegram servers",
+}
