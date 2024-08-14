@@ -27,7 +27,7 @@ from utils.misc import modules_help, prefix
 async def ping(_, message: Message):
     start = perf_counter()
     end = perf_counter()
-    await asyncio.sleep(1.5) message.reply(f"<b>Pong! {round(end - start, 10)}s</b>")
+    await async.sleep(1.5) message.reply(f"<b>Pong! {round(end - start, 10)}s</b>")
 
 
 modules_help["ping"] = {
