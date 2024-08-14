@@ -15,6 +15,7 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 from time import perf_counter
+import asyncio
 
 from pyrogram import Client, filters
 from pyrogram.types import Message
@@ -26,7 +27,7 @@ from utils.misc import modules_help, prefix
 async def ping(_, message: Message):
     start = perf_counter()
     end = perf_counter()
-    await message.reply(f"<b>Pong! {round(end - start, 10)}s</b>")
+    await asyncio.sleep(1.5) message.reply(f"<b>Pong! {round(end - start, 10)}s</b>")
 
 
 modules_help["ping"] = {
