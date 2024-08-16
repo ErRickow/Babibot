@@ -44,6 +44,21 @@ async def restart_cmd(_, message: Message):
         return
 
     await message.reply("<b>Sedang Restart Sayangku...</b>")
+    try:
+      subprocess.run(["git", "pull"])
+        subprocess.run(
+            [
+                sys.executable,
+                "-m"
+                ]
+        subprocess.run(
+            [sys.executable, "-m"]
+        )
+    except Exception as e:
+        await message.reply(format_exc(e))
+        db.remove("core.updater", "restart_info")
+    else:
+        await message.reply("<b>_Sudah Selesai Restartnya sayang_...</b>")
     restart()
 
 
