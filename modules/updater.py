@@ -47,7 +47,6 @@ async def restart_cmd(_, message: Message):
     try:
       subprocess.run(["git", "pull"])
     restart()
-        await message.reply("<b>_Sudah Selesai Restartnya sayang_...</b>")
 
 
 @Client.on_message(filters.command("update", prefix) & filters.me)
